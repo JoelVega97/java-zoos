@@ -25,7 +25,7 @@ public class Zoo extends Auditable {
     //OTM Animals
     @OneToMany(mappedBy = "zoo", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = "zoo", allowSetters = true)
-    private Set<Animal> animals = new HashSet<>();
+    private Set<Zooanmials> animals = new HashSet<>();
 
     public Zoo() {
     }
@@ -48,5 +48,13 @@ public class Zoo extends Auditable {
 
     public void setZooname(String zooname) {
         this.zooname = zooname;
+    }
+
+    public Set<Zooanmials> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Set<Zooanmials> animals) {
+        this.animals = animals;
     }
 }

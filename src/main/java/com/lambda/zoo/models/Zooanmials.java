@@ -2,11 +2,12 @@ package com.lambda.zoo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "zooanimals")
+@IdClass(ZooAnimalsId.class)
 public class Zooanmials extends Auditable implements Serializable {
     @Id
     @ManyToOne
@@ -20,12 +21,15 @@ public class Zooanmials extends Auditable implements Serializable {
     @JsonIgnoreProperties(value = "zoos", allowSetters = true)
     private Animal animal;
 
+    private String incomingzoo;
+
     public Zooanmials() {
     }
 
-    public Zooanmials(Zoo zoo, Animal animal) {
+    public Zooanmials(Zoo zoo, Animal animal, String incomingzoo) {
         this.zoo = zoo;
         this.animal = animal;
+        this.incomingzoo = incomingzoo;
     }
 
     public Zoo getZoo() {
@@ -42,6 +46,14 @@ public class Zooanmials extends Auditable implements Serializable {
 
     public void setAnimal(Animal animal) {
         this.animal = animal;
+    }
+
+    public String getIncomingzoo() {
+        return incomingzoo;
+    }
+
+    public void setIncomingzoo(String incomingzoo) {
+        this.incomingzoo = incomingzoo;
     }
 
     @Override
